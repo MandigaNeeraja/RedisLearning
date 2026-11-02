@@ -1,0 +1,27 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_practice
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+  
+  mongo:
+    image: mongo:latest
+    container_name: mongo_practice
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=practice
+    volumes:
+      - mongo-data:/data/db 
+
+volumes:
+  redis-data:
+  mongo-data:
+    
+    
